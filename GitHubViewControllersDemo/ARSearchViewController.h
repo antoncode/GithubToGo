@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ARBurgerProtocol.h"
 
+@class ARSearchDetailViewController;
+
 @interface ARSearchViewController : UIViewController
 
 @property (nonatomic, unsafe_unretained) id<ARBurgerProtocol> delegate;
+@property (nonatomic, strong) ARSearchDetailViewController *searchDetailViewController;
 
 @end
