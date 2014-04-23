@@ -30,6 +30,8 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.userInteractionEnabled = NO;
+    
+    self.tapToClose = [UITapGestureRecognizer new];
 
     [self setUpChildViewControllers];
     [self setUpDrag];
@@ -133,7 +135,8 @@
         _topViewController.view.frame = CGRectMake(self.view.frame.size.width * 0.75, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
     } completion:^(BOOL finished) {
         if (finished) {
-            _tapToClose = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeMenu:)];
+//            _tapToClose = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeMenu:)];
+            [_tapToClose addTarget:self action:@selector(closeMenu:)];
             [_topViewController.view addGestureRecognizer:_tapToClose];
             _menuIsOpen = YES;
             _tableView.userInteractionEnabled = YES;
