@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A6521B81908738100C7B4FA /* ARWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6521B71908738100C7B4FA /* ARWebViewController.m */; };
+		3A6521BA19087D0E00C7B4FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A6521B919087D0E00C7B4FA /* Images.xcassets */; };
 		3A7DE2D91905BB7E0025AE43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7DE2D81905BB7E0025AE43 /* Foundation.framework */; };
 		3A7DE2DB1905BB7E0025AE43 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7DE2DA1905BB7E0025AE43 /* CoreGraphics.framework */; };
 		3A7DE2DD1905BB7E0025AE43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7DE2DC1905BB7E0025AE43 /* UIKit.framework */; };
@@ -24,7 +25,6 @@
 		3A7DE3171905BC8E0025AE43 /* ARReposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DE3101905BC8E0025AE43 /* ARReposViewController.m */; };
 		3A7DE3181905BC8E0025AE43 /* ARUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DE3121905BC8E0025AE43 /* ARUsersViewController.m */; };
 		3A7DE3191905BC8E0025AE43 /* ARSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DE3141905BC8E0025AE43 /* ARSearchViewController.m */; };
-		3A7DE31D1905BE630025AE43 /* burger.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7DE31C1905BE630025AE43 /* burger.png */; };
 		3A7DE324190624930025AE43 /* ARRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DE323190624930025AE43 /* ARRepo.m */; };
 		3A7DE3271906DFF30025AE43 /* ARNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DE3261906DFF30025AE43 /* ARNetworkController.m */; };
 		3A95543619084E16007BE44B /* ARSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95543519084E16007BE44B /* ARSignInViewController.m */; };
@@ -43,6 +43,7 @@
 /* Begin PBXFileReference section */
 		3A6521B61908738100C7B4FA /* ARWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARWebViewController.h; sourceTree = "<group>"; };
 		3A6521B71908738100C7B4FA /* ARWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARWebViewController.m; sourceTree = "<group>"; };
+		3A6521B919087D0E00C7B4FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3A7DE2D51905BB7E0025AE43 /* GitHubViewControllersDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubViewControllersDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A7DE2D81905BB7E0025AE43 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3A7DE2DA1905BB7E0025AE43 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,7 +69,6 @@
 		3A7DE3131905BC8E0025AE43 /* ARSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSearchViewController.h; sourceTree = "<group>"; };
 		3A7DE3141905BC8E0025AE43 /* ARSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARSearchViewController.m; sourceTree = "<group>"; };
 		3A7DE3151905BC8E0025AE43 /* ARBurgerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBurgerProtocol.h; sourceTree = "<group>"; };
-		3A7DE31C1905BE630025AE43 /* burger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = burger.png; sourceTree = "<group>"; };
 		3A7DE322190624930025AE43 /* ARRepo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRepo.h; sourceTree = "<group>"; };
 		3A7DE323190624930025AE43 /* ARRepo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRepo.m; sourceTree = "<group>"; };
 		3A7DE3251906DFF30025AE43 /* ARNetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARNetworkController.h; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 				3A7DE322190624930025AE43 /* ARRepo.h */,
 				3A7DE323190624930025AE43 /* ARRepo.m */,
 				3A7DE3151905BC8E0025AE43 /* ARBurgerProtocol.h */,
-				3A7DE31C1905BE630025AE43 /* burger.png */,
+				3A6521B919087D0E00C7B4FA /* Images.xcassets */,
 				3A7DE2DF1905BB7E0025AE43 /* Supporting Files */,
 			);
 			path = GitHubViewControllersDemo;
@@ -266,7 +266,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A7DE31D1905BE630025AE43 /* burger.png in Resources */,
+				3A6521BA19087D0E00C7B4FA /* Images.xcassets in Resources */,
 				3A7DE2E31905BB7E0025AE43 /* InfoPlist.strings in Resources */,
 				3A7DE2EC1905BB7E0025AE43 /* Main.storyboard in Resources */,
 			);

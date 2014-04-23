@@ -7,16 +7,16 @@
 //
 
 #import "ARSearchViewController.h"
-#import "ARWebViewController.h"
-#import "ARRepo.h"
 #import "ARAppDelegate.h"
+#import "ARRepo.h"
+#import "ARWebViewController.h"
 
 @interface ARSearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
+@property (weak, nonatomic) ARAppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, strong) NSMutableArray *searchRepos;
-@property (weak, nonatomic) ARAppDelegate *appDelegate;
+@property (nonatomic, strong) NSMutableArray *searchArray;
 @property (weak, nonatomic) ARNetworkController *networkController;
 
 @end
@@ -30,7 +30,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    _searchRepos = [NSMutableArray new];
+    _searchArray = [NSMutableArray new];
     
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.networkController = self.appDelegate.networkController;
@@ -66,7 +66,7 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            _searchRepos = tempRepos;
+            _searchArray = tempRepos;
             [self.tableView reloadData];
         });
     });
@@ -99,16 +99,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _searchRepos.count;
+    return _searchArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    ARRepo *repo = _searchRepos[indexPath.row];
+    ARRepo *repo = _searchArray[indexPath.row];
     cell.textLabel.text = repo.name;
-//    cell.imageView.image = repo.authorAvatar;
+    cell.imageView.image = repo.userAvatar;
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [_tableView reloadData];
+    }];
+    
     return cell;
 }
 
@@ -121,7 +126,7 @@
 {
     if ([segue.identifier isEqualToString:@"showWebView"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        ARRepo *repo = [_searchRepos objectAtIndex:indexPath.row];
+        ARRepo *repo = [_searchArray objectAtIndex:indexPath.row];
         ARWebViewController *wvc = (ARWebViewController *)segue.destinationViewController;
         
         wvc.html_url = repo.url;
@@ -133,11 +138,6 @@
 - (IBAction)burgerPressed:(id)sender
 {
     [self.delegate handleBurgerPress];
-}
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
 }
 
 @end

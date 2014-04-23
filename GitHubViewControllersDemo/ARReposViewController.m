@@ -10,12 +10,14 @@
 #import "ARAppDelegate.h"
 #import "ARRepo.h"
 #import "ARWebViewController.h"
+#import "ARNetworkController.h"
 
 @interface ARReposViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) ARAppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *reposArray;
+@property (nonatomic, weak) ARNetworkController *networkController;
 
 @end
 
@@ -63,7 +65,12 @@
     
     ARRepo *repo = _reposArray[indexPath.row];
     cell.textLabel.text = repo.name;
-    //    cell.imageView.image = repo.authorAvatar;
+    cell.imageView.image = repo.userAvatar;
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        [_tableView reloadData];
+    }];
+    
     return cell;
 }
 

@@ -8,14 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ARBurgerProtocol.h"
-#import "ARRepo.h"
 
 @class ARSearchDetailViewController;
 
 @interface ARSearchViewController : UIViewController
 
 @property (nonatomic, unsafe_unretained) id<ARBurgerProtocol> delegate;
-@property (nonatomic, strong) ARSearchDetailViewController *searchDetailViewController;
-@property (nonatomic, strong) ARRepo *myRepo;
 
 @end
