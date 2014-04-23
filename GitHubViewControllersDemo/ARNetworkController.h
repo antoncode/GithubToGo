@@ -7,15 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ARNetworkProtocol.h"
 
 @interface ARNetworkController : NSObject
 
 @property (nonatomic, strong) NSMutableArray *reposArray;
-@property (nonatomic, unsafe_unretained) id<ARNetworkProtocol> delegate;
 
-- (void)requestOAuthAccess;
+- (void)requestOAuthAccessWithCompletion:(void (^)())completionBlock;
 - (void)handleOAuthCallbackWithURL:(NSURL *)url;
-- (void)retrieveReposForCurrentUser;
+- (void)retrieveReposForCurrentUser:(void(^)(NSMutableArray *repos))completionBlock;
+- (BOOL)checkForUserToken;
 
 @end

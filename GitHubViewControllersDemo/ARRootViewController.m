@@ -96,7 +96,7 @@
     CGPoint translatedPoint = [pan translationInView:self.view];
 //    CGPoint velocity = [pan velocityInView:self.view];
 //    NSLog(@"translation: %@", NSStringFromCGPoint(translatedPoint));    // Amount moved
-//    NSLog(@"velocity: %@", NSStringFromCGPoint(velocity));      // Speed of geture
+//    NSLog(@"velocity: %@", NSStringFromCGPoint(velocity));      // Speed of gesture
     
     if (pan.state == UIGestureRecognizerStateChanged) {
         if (translatedPoint.x > 0) {

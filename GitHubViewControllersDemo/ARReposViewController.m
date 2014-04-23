@@ -9,14 +9,13 @@
 #import "ARReposViewController.h"
 #import "ARAppDelegate.h"
 #import "ARRepo.h"
-#import "ARReposDetailViewController.h"
-#import "ARNetworkProtocol.h"
+#import "ARWebViewController.h"
 
-@interface ARReposViewController () <UITableViewDelegate, UITableViewDataSource, ARNetworkProtocol>
+@interface ARReposViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) ARAppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *reposViewArray;
+@property (nonatomic, strong) NSMutableArray *reposArray;
 
 @end
 
@@ -37,9 +36,13 @@
 {
     [super viewWillAppear:animated];
     
-    [_networkController retrieveReposForCurrentUser];
-    
-    self.networkController.delegate = self;
+    [_networkController retrieveReposForCurrentUser:^(NSMutableArray *repos) {
+        self.reposArray = repos;
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView reloadData];
+        }];
+    }];
 }
 
 - (IBAction)burgerPressed:(id)sender
@@ -51,14 +54,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _reposViewArray.count;
+    return _reposArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    ARRepo *repo = _reposViewArray[indexPath.row];
+    ARRepo *repo = _reposArray[indexPath.row];
     cell.textLabel.text = repo.name;
     //    cell.imageView.image = repo.authorAvatar;
     return cell;
@@ -71,22 +74,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"showRepo"]) {
+    if ([segue.identifier isEqualToString:@"showWebView"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        ARRepo *repo = [_reposViewArray objectAtIndex:indexPath.row];
-        ARReposDetailViewController *rdvc = (ARReposDetailViewController *)segue.destinationViewController;
+        ARRepo *repo = [_reposArray objectAtIndex:indexPath.row];
+        ARWebViewController *wvc = (ARWebViewController *)segue.destinationViewController;
                 
-        rdvc.html_url = repo.html_url;
+        wvc.html_url = repo.url;
     }
-}
-
-- (void)finishedNetworkDownload:(NSMutableArray *)reposArray;
-{
-    _reposViewArray = reposArray;
-    
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [self.tableView reloadData];
-    }];
 }
 
 
