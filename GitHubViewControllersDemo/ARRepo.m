@@ -16,20 +16,20 @@
         self.name = [json objectForKey:@"name"];
         self.html_url = [NSURL URLWithString:[json objectForKey:@"html_url"]];
         
-        NSURL *avatarURL = [NSURL URLWithString:[json[@"owner"] objectForKey:@"avatar_url"]];
-        [self downloadImageForURL:avatarURL];
+//        NSURL *avatarURL = [NSURL URLWithString:[json[@"owner"] objectForKey:@"avatar_url"]];
+//        [self downloadImageForURL:avatarURL];
     }
     
     return self;
 }
 
-- (void)downloadImageForURL:(NSURL *)url
-{
-    NSOperationQueue *downloadQueue = [NSOperationQueue new];
-    [downloadQueue addOperationWithBlock:^{
-        NSData *avatarData = [NSData dataWithContentsOfURL:url];
-        self.authorAvatar = [UIImage imageWithData:avatarData];
-    }];
-}
+//- (void)downloadImageForURL:(NSURL *)url
+//{
+//    NSOperationQueue *downloadQueue = [NSOperationQueue new];
+//    [downloadQueue addOperationWithBlock:^{
+//        NSData *avatarData = [NSData dataWithContentsOfURL:url];
+//        self.authorAvatar = [UIImage imageWithData:avatarData];
+//    }];
+//}
 
 @end

@@ -26,6 +26,8 @@
 		3A7DE31D1905BE630025AE43 /* burger.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7DE31C1905BE630025AE43 /* burger.png */; };
 		3A7DE32119061A100025AE43 /* ARSearchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DE32019061A100025AE43 /* ARSearchDetailViewController.m */; };
 		3A7DE324190624930025AE43 /* ARRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DE323190624930025AE43 /* ARRepo.m */; };
+		3A7DE3271906DFF30025AE43 /* ARNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DE3261906DFF30025AE43 /* ARNetworkController.m */; };
+		3A7DE32B190739770025AE43 /* ARReposDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DE32A190739770025AE43 /* ARReposDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,11 @@
 		3A7DE32019061A100025AE43 /* ARSearchDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARSearchDetailViewController.m; sourceTree = "<group>"; };
 		3A7DE322190624930025AE43 /* ARRepo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRepo.h; sourceTree = "<group>"; };
 		3A7DE323190624930025AE43 /* ARRepo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARRepo.m; sourceTree = "<group>"; };
+		3A7DE3251906DFF30025AE43 /* ARNetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARNetworkController.h; sourceTree = "<group>"; };
+		3A7DE3261906DFF30025AE43 /* ARNetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARNetworkController.m; sourceTree = "<group>"; };
+		3A7DE32819072A2B0025AE43 /* ARNetworkProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARNetworkProtocol.h; sourceTree = "<group>"; };
+		3A7DE329190739770025AE43 /* ARReposDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARReposDetailViewController.h; sourceTree = "<group>"; };
+		3A7DE32A190739770025AE43 /* ARReposDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARReposDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,11 +137,16 @@
 			children = (
 				3A7DE2E71905BB7E0025AE43 /* ARAppDelegate.h */,
 				3A7DE2E81905BB7E0025AE43 /* ARAppDelegate.m */,
+				3A7DE3251906DFF30025AE43 /* ARNetworkController.h */,
+				3A7DE3261906DFF30025AE43 /* ARNetworkController.m */,
+				3A7DE32819072A2B0025AE43 /* ARNetworkProtocol.h */,
 				3A7DE2EA1905BB7E0025AE43 /* Main.storyboard */,
 				3A7DE30D1905BC8E0025AE43 /* ARRootViewController.h */,
 				3A7DE30E1905BC8E0025AE43 /* ARRootViewController.m */,
 				3A7DE30F1905BC8E0025AE43 /* ARReposViewController.h */,
 				3A7DE3101905BC8E0025AE43 /* ARReposViewController.m */,
+				3A7DE329190739770025AE43 /* ARReposDetailViewController.h */,
+				3A7DE32A190739770025AE43 /* ARReposDetailViewController.m */,
 				3A7DE3111905BC8E0025AE43 /* ARUsersViewController.h */,
 				3A7DE3121905BC8E0025AE43 /* ARUsersViewController.m */,
 				3A7DE3131905BC8E0025AE43 /* ARSearchViewController.h */,
@@ -279,11 +291,13 @@
 			files = (
 				3A7DE2E51905BB7E0025AE43 /* main.m in Sources */,
 				3A7DE3191905BC8E0025AE43 /* ARSearchViewController.m in Sources */,
+				3A7DE32B190739770025AE43 /* ARReposDetailViewController.m in Sources */,
 				3A7DE3171905BC8E0025AE43 /* ARReposViewController.m in Sources */,
 				3A7DE2E91905BB7E0025AE43 /* ARAppDelegate.m in Sources */,
 				3A7DE324190624930025AE43 /* ARRepo.m in Sources */,
 				3A7DE3181905BC8E0025AE43 /* ARUsersViewController.m in Sources */,
 				3A7DE3161905BC8E0025AE43 /* ARRootViewController.m in Sources */,
+				3A7DE3271906DFF30025AE43 /* ARNetworkController.m in Sources */,
 				3A7DE32119061A100025AE43 /* ARSearchDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ARNetworkController.h"
 
 @interface ARAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) ARNetworkController *networkController;
 
 @end

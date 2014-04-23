@@ -35,21 +35,35 @@
     [self setUpDrag];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
 - (void)setUpChildViewControllers
 {
     ARReposViewController *repoViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"repos"];
     repoViewController.title = @"My Repos";
     repoViewController.delegate = self;
-    
+    UINavigationController *repoNavControl = [[UINavigationController alloc] initWithRootViewController:repoViewController];    // Embeds navigation controller
+    [repoNavControl setNavigationBarHidden:YES animated:NO];
+
     ARUsersViewController *usersViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"users"];
     usersViewController.title = @"Folowing";
     usersViewController.delegate = self;
+    UINavigationController *usersNavControl = [[UINavigationController alloc] initWithRootViewController:usersViewController];
+    [usersNavControl setNavigationBarHidden:YES animated:NO];
     
     ARSearchViewController *searchViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"search"];
     searchViewController.title = @"Search";
-    usersViewController.delegate = self;
+    searchViewController.delegate = self;
+    UINavigationController *searchNavControl = [[UINavigationController alloc] initWithRootViewController:searchViewController];
+    [searchNavControl setNavigationBarHidden:YES animated:NO];
     
-    _arrayOfViewControllers = @[repoViewController, usersViewController, searchViewController];
+    _arrayOfViewControllers = @[repoNavControl, usersNavControl, searchNavControl];
     
     _topViewController = _arrayOfViewControllers[0];
     

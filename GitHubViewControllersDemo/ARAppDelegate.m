@@ -12,7 +12,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    self.networkController = [ARNetworkController new];
+    
+    return YES;
+}
+
+// Handles what happens when we come back from the sign in web view
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    [self.networkController handleOAuthCallbackWithURL:url];
+    
     return YES;
 }
 							

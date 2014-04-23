@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ARBurgerProtocol.h"
+#import "ARNetworkController.h"
 
 @interface ARReposViewController : UIViewController
 
-@property (nonatomic,unsafe_unretained) id <ARBurgerProtocol> delegate;
+@property (nonatomic, unsafe_unretained) id<ARBurgerProtocol> delegate;
+@property (nonatomic, weak) ARNetworkController *networkController;
 
 @end

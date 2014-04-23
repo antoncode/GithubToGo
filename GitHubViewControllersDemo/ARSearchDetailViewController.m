@@ -10,27 +10,9 @@
 
 @interface ARSearchDetailViewController ()
 
-- (void)configureView;
-
 @end
 
 @implementation ARSearchDetailViewController
-
-- (void)setRepo:(id)newRepo
-{
-    if (_repo != newRepo) {
-        _repo = newRepo;
-        
-        // Update the view.
-        [self configureView];
-    }
-    
-//    if (self.masterPopoverController != nil) {
-//        [self.masterPopoverController dismissPopoverAnimated:YES];
-//    }
-    
-    NSLog(@"Repo URL: %@", _repo.html_url);
-}
 
 - (void)viewDidLoad
 {
@@ -41,21 +23,30 @@
 
 - (void)configureView
 {
-    // Update the user interface for the detail item.
-    if (self.repo.html_url) {
-        if (!self.repo.htmlCache) {
-            NSData *cacheData = [NSData dataWithContentsOfURL:_repo.html_url];
-            NSString *cacheString = [[NSString alloc] initWithData:cacheData encoding:NSUTF8StringEncoding];
-            _repo.htmlCache = cacheString;
-            [self configureView];
-        } else {
-            [_repoWebView loadHTMLString:_repo.htmlCache baseURL:nil];
-        }
-    }
+//    if (self.html_url) {
+//        if (!_repo.htmlCache) {
+//            NSData *cacheData = [NSData dataWithContentsOfURL:_html_url];
+//            _repo.htmlCache = cacheData;
+//            [self configureView];
+//        } else {
+//            [_repoWebView loadData:_repo.htmlCache MIMEType:nil textEncodingName:nil baseURL:nil];
+//        }
+//    }
+    
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.html_url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:604800];
+    [_repoWebView loadRequest:urlRequest];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)viewWillAppear:(BOOL)animated
 {
-    
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
 @end

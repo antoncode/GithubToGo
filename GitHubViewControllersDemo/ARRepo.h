@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) NSURL *html_url;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) UIImage *authorAvatar;
-@property (nonatomic, strong) NSString *htmlCache;
+//@property (nonatomic, strong) UIImage *authorAvatar;
+@property (nonatomic, strong) NSData *htmlCache;
 
 @end
