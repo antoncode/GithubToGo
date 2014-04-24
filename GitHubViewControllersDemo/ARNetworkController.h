@@ -11,10 +11,12 @@
 @interface ARNetworkController : NSObject
 
 @property (nonatomic, strong) NSMutableArray *reposArray;
+@property (nonatomic, strong) NSString *query;
 
 - (void)requestOAuthAccessWithCompletion:(void (^)())completionBlock;
 - (void)handleOAuthCallbackWithURL:(NSURL *)url;
 - (void)retrieveReposForCurrentUser:(void(^)(NSMutableArray *repos))completionBlock;
 - (BOOL)checkForUserToken;
+- (void)getReposForQuery:(void(^)(NSMutableArray *array))completionBlock;
 
 @end

@@ -133,7 +133,6 @@
         if ([jsonArray isKindOfClass:[NSMutableArray class]]) {
             completionBlock(_reposArray);
         }
-        
     }];
     
     [repoDataTask resume];
@@ -142,6 +141,53 @@
 -(BOOL)checkForUserToken
 {
     return (self.token);
+}
+
+- (void)getReposForQuery:(void(^)(NSMutableArray *array))completionBlock
+{
+    dispatch_queue_t downloadQueue = dispatch_queue_create("com.Rivera.Anton.downloadQueue", NULL);
+    dispatch_async(downloadQueue, ^{
+        NSString *searchURLString = [NSString stringWithFormat:@"https://api.github.com/search/repositories?q=%@", _query];
+        NSURL *searchURL = [NSURL URLWithString:searchURLString];
+        NSData *searchData = [NSData dataWithContentsOfURL:searchURL];
+        NSDictionary *searchDict = [NSJSONSerialization JSONObjectWithData:searchData
+                                                                   options:NSJSONReadingMutableContainers
+                                                                     error:nil];
+        
+        NSMutableArray *tempRepos = [NSMutableArray new];
+        
+        for (NSDictionary *repo in [searchDict objectForKey:@"items"]) {
+            ARRepo *downloadedRepo = [[ARRepo alloc] initWithJSON:repo];
+            [tempRepos addObject:downloadedRepo];
+        }
+        
+        if ([tempRepos isKindOfClass:[NSMutableArray class]]){
+            completionBlock(tempRepos);
+        }
+    });
+    
+    //    NSOperationQueue *downloadQueue = [NSOperationQueue new];
+    //    [downloadQueue addOperationWithBlock:^{
+    //        NSString *searchURLString = [NSString stringWithFormat:@"https://api.github.com/search/repositories?q=%@", query];
+    //        NSURL *searchURL = [NSURL URLWithString:searchURLString];
+    //        NSData *searchData = [NSData dataWithContentsOfURL:searchURL];
+    //        NSDictionary *searchDict = [NSJSONSerialization JSONObjectWithData:searchData
+    //                                                                   options:NSJSONReadingMutableContainers
+    //                                                                     error:nil];
+    //
+    //        NSMutableArray *tempRepos = [NSMutableArray new];
+    //
+    //        for (NSDictionary *repo in [searchDict objectForKey:@"items"]) {
+    //            ARRepo *downloadedRepo = [[ARRepo alloc] initWithJSON:repo];
+    //            [tempRepos addObject:downloadedRepo];
+    //        }
+    //
+    //        NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+    //        [mainQueue addOperationWithBlock:^{
+    //            _repos = tempRepos;
+    //            [self.tableView reloadData];
+    //        }];
+    //    }];
 }
 
 @end
