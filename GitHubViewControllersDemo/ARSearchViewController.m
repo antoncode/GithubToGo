@@ -49,7 +49,6 @@
 - (void)getReposForQuery:(NSString *)query
 {
     dispatch_queue_t downloadQueue = dispatch_queue_create("com.Rivera.Anton.downloadQueue", NULL);
-    
     dispatch_async(downloadQueue, ^{
         NSString *searchURLString = [NSString stringWithFormat:@"https://api.github.com/search/repositories?q=%@", query];
         NSURL *searchURL = [NSURL URLWithString:searchURLString];
@@ -129,7 +128,7 @@
         ARRepo *repo = [_searchArray objectAtIndex:indexPath.row];
         ARWebViewController *wvc = (ARWebViewController *)segue.destinationViewController;
         
-        wvc.html_url = repo.url;
+        wvc.html_url = repo.html_url;
     }
 }
 

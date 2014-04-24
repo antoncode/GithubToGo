@@ -86,7 +86,7 @@
         ARRepo *repo = [_reposArray objectAtIndex:indexPath.row];
         ARWebViewController *wvc = (ARWebViewController *)segue.destinationViewController;
                 
-        wvc.html_url = repo.url;
+        wvc.html_url = repo.html_url;
     }
 }
 

@@ -88,8 +88,7 @@
     NSString *accessTokenWithCode = tokenComponents[0];
     NSArray *access_token_array = [accessTokenWithCode componentsSeparatedByString:@"="];
     
-//    NSLog(@"%@", access_token_array[1]);
-    
+    // Return access token
     return access_token_array[1];
 }
 
@@ -104,8 +103,7 @@
 - (void)retrieveReposForCurrentUser:(void(^)(NSMutableArray *repos))completionBlock
 {    
     NSURL *userRepoURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@user/repos",GITHUB_API_URL]];
-//    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+
     NSMutableURLRequest *request = [NSMutableURLRequest new];
     [request setURL:userRepoURL];
     [request setHTTPMethod:@"GET"];
@@ -117,24 +115,22 @@
         
         self.reposArray = [NSMutableArray new];
         
-        for (NSDictionary *tempDict in jsonArray) {
-            ARRepo *repo = [[ARRepo alloc] initWithJSON:tempDict];
-            repo.name = [tempDict objectForKey:@"name"];
-            repo.url = [tempDict objectForKey:@"html_url"];
-            [self.reposArray addObject:repo];
-        }
-        
-//        // Doing for loop in a block
-//        [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//            ARRepo *repo = [ARRepo new];
-//            repo.name = [obj objectForKey:@"name"];
-//            repo.url = [obj objectForKey:@"url"];
+//        for (NSDictionary *tempDict in jsonArray) {
+//            ARRepo *repo = [[ARRepo alloc] initWithJSON:tempDict];
+//            repo.name = [tempDict objectForKey:@"name"];
+//            repo.html_url = [tempDict objectForKey:@"html_url"];
 //            [self.reposArray addObject:repo];
-//        }];
+//        }
+
+        // Doing for loop in a block
+        [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            ARRepo *repo = [[ARRepo alloc] initWithJSON:obj];
+            repo.name = [obj objectForKey:@"name"];
+            repo.html_url = [obj objectForKey:@"html_url"];
+            [self.reposArray addObject:repo];
+        }];
         
         if ([jsonArray isKindOfClass:[NSMutableArray class]]) {
-            
-            
             completionBlock(_reposArray);
         }
         

@@ -14,7 +14,7 @@
 {
     if (self = [super init]) {
         self.name = [json objectForKey:@"name"];
-        self.url = [json objectForKey:@"html_url"];
+        self.html_url = [json objectForKey:@"html_url"];
         
         NSURL *avatarURL = [NSURL URLWithString:[json[@"owner"] objectForKey:@"avatar_url"]];
         [self downloadImageForURL:avatarURL];

@@ -12,7 +12,7 @@
 
 - (id)initWithJSON:(NSDictionary *)json;
 
-@property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *html_url;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) UIImage *userAvatar;
 @property (nonatomic, strong) NSData *htmlCache;

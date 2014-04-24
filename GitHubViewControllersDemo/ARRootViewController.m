@@ -69,7 +69,6 @@
     _topViewController = _arrayOfViewControllers[0];
     
     [self addChildViewController:_topViewController];
-    // repoViewController.view.frame = self.view.frame; // Take up whole screen, not needed because instantiated in storyboard
     [self.view addSubview:_topViewController.view];
     [_topViewController didMoveToParentViewController:self];
 }
@@ -90,18 +89,16 @@
 {
     UIPanGestureRecognizer *pan = (UIPanGestureRecognizer *)sender;
     
-//    [[[pan view] layer] removeAllAnimations];     // Clears all animations before gesture starts
+//    [[[pan view] layer] removeAllAnimations];                         // Clears all animations before gesture starts
     
-    CGPoint translatedPoint = [pan translationInView:self.view];
-//    CGPoint velocity = [pan velocityInView:self.view];
-//    NSLog(@"translation: %@", NSStringFromCGPoint(translatedPoint));    // Amount moved
-//    NSLog(@"velocity: %@", NSStringFromCGPoint(velocity));      // Speed of gesture
+    CGPoint translatedPoint = [pan translationInView:self.view];        // Amount moved
+//    CGPoint velocity = [pan velocityInView:self.view];                // Speed of gesture
     
     if (pan.state == UIGestureRecognizerStateChanged) {
         if (translatedPoint.x > 0) {
             _topViewController.view.center = CGPointMake(_topViewController.view.center.x + translatedPoint.x, _topViewController.view.center.y);     // Panning on x axis only
             
-            [pan setTranslation:CGPointZero inView:self.view];    // resets
+            [pan setTranslation:CGPointZero inView:self.view];          // resets
         }
     }
     
@@ -134,7 +131,6 @@
         _topViewController.view.frame = CGRectMake(self.view.frame.size.width * 0.75, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
     } completion:^(BOOL finished) {
         if (finished) {
-//            _tapToClose = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeMenu:)];
             [_tapToClose addTarget:self action:@selector(closeMenu:)];
             [_topViewController.view addGestureRecognizer:_tapToClose];
             _menuIsOpen = YES;
