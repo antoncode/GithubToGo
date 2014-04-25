@@ -261,38 +261,54 @@
                                     <action selector="burgerPressed:" destination="kpk-Ab-PPM" eventType="touchUpInside" id="IlT-Ln-p2D"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qxh-Qu-eUs">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="S2d-xE-Y7d">
                                 <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="bi4-AC-6xu">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bi4-AC-6xu" id="FXa-YM-hiA">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4fE-BO-Gdd">
+                                    <size key="itemSize" width="319" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="ZBY-Wx-WhF" customClass="ARCell">
+                                        <rect key="frame" x="1" y="0.0" width="319" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="319" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YTQ-LE-jSg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSH-tm-JLc">
+                                                    <rect key="frame" x="58" y="0.0" width="261" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
                                         <connections>
-                                            <segue destination="sP3-GO-gwy" kind="push" identifier="showWebView" id="0Pl-Vv-8yA"/>
+                                            <outlet property="avatarImageView" destination="YTQ-LE-jSg" id="kaC-2B-ngk"/>
+                                            <outlet property="repoNameLabel" destination="GSH-tm-JLc" id="L2O-QK-MRe"/>
+                                            <segue destination="sP3-GO-gwy" kind="push" identifier="showWebView" id="wlm-bY-aP0"/>
                                         </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Qxh-Qu-eUs" firstAttribute="leading" secondItem="ee3-af-Lyg" secondAttribute="leading" id="38y-y5-DTh"/>
                             <constraint firstItem="vTH-AL-SHl" firstAttribute="top" secondItem="ee3-af-Lyg" secondAttribute="top" constant="20" symbolic="YES" id="5n3-XC-Eck"/>
-                            <constraint firstItem="Qxh-Qu-eUs" firstAttribute="top" secondItem="vTH-AL-SHl" secondAttribute="bottom" constant="8" symbolic="YES" id="Aei-J0-RIU"/>
-                            <constraint firstAttribute="trailing" secondItem="Qxh-Qu-eUs" secondAttribute="trailing" id="KHy-D7-9Fi"/>
                             <constraint firstItem="vTH-AL-SHl" firstAttribute="leading" secondItem="ee3-af-Lyg" secondAttribute="leading" constant="20" symbolic="YES" id="nub-FW-wCB"/>
-                            <constraint firstAttribute="bottom" secondItem="Qxh-Qu-eUs" secondAttribute="bottom" id="xHb-Dh-nk3"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="tableView" destination="Qxh-Qu-eUs" id="NRv-Bf-eDa"/>
+                        <outlet property="collectionView" destination="S2d-xE-Y7d" id="Hzb-5d-VgS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQf-8q-pvv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -319,7 +335,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="burger.png" width="32" height="32"/>
+        <image name="burger.png" width="128" height="128"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -327,6 +343,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ex2-XU-asA"/>
+        <segue reference="wlm-bY-aP0"/>
     </inferredMetricsTieBreakers>
 </document>

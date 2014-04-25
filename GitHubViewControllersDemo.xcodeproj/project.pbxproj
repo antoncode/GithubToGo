@@ -29,6 +29,8 @@
 		3A7DE3271906DFF30025AE43 /* ARNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DE3261906DFF30025AE43 /* ARNetworkController.m */; };
 		3A95543619084E16007BE44B /* ARSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95543519084E16007BE44B /* ARSignInViewController.m */; };
 		3ABA90851909A87800333505 /* ARUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABA90841909A87800333505 /* ARUser.m */; };
+		3ABA9088190A2C2200333505 /* ARCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABA9087190A2C2200333505 /* ARCell.m */; };
+		3ABA908A190A370100333505 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABA9089190A370100333505 /* default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,9 @@
 		3A95543519084E16007BE44B /* ARSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARSignInViewController.m; sourceTree = "<group>"; };
 		3ABA90831909A87800333505 /* ARUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARUser.h; sourceTree = "<group>"; };
 		3ABA90841909A87800333505 /* ARUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARUser.m; sourceTree = "<group>"; };
+		3ABA9086190A2C2200333505 /* ARCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCell.h; sourceTree = "<group>"; };
+		3ABA9087190A2C2200333505 /* ARCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCell.m; sourceTree = "<group>"; };
+		3ABA9089190A370100333505 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +153,8 @@
 				3A7DE2EA1905BB7E0025AE43 /* Main.storyboard */,
 				3A7DE30F1905BC8E0025AE43 /* ARReposViewController.h */,
 				3A7DE3101905BC8E0025AE43 /* ARReposViewController.m */,
+				3ABA9086190A2C2200333505 /* ARCell.h */,
+				3ABA9087190A2C2200333505 /* ARCell.m */,
 				3A7DE3111905BC8E0025AE43 /* ARUsersViewController.h */,
 				3A7DE3121905BC8E0025AE43 /* ARUsersViewController.m */,
 				3A7DE3131905BC8E0025AE43 /* ARSearchViewController.h */,
@@ -160,6 +167,7 @@
 				3ABA90841909A87800333505 /* ARUser.m */,
 				3A7DE3151905BC8E0025AE43 /* ARBurgerProtocol.h */,
 				3A6521B919087D0E00C7B4FA /* Images.xcassets */,
+				3ABA9089190A370100333505 /* default.png */,
 				3A7DE2DF1905BB7E0025AE43 /* Supporting Files */,
 			);
 			path = GitHubViewControllersDemo;
@@ -274,6 +282,7 @@
 				3A6521BA19087D0E00C7B4FA /* Images.xcassets in Resources */,
 				3A7DE2E31905BB7E0025AE43 /* InfoPlist.strings in Resources */,
 				3A7DE2EC1905BB7E0025AE43 /* Main.storyboard in Resources */,
+				3ABA908A190A370100333505 /* default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +303,7 @@
 			files = (
 				3A6521B81908738100C7B4FA /* ARWebViewController.m in Sources */,
 				3A7DE2E51905BB7E0025AE43 /* main.m in Sources */,
+				3ABA9088190A2C2200333505 /* ARCell.m in Sources */,
 				3A7DE3191905BC8E0025AE43 /* ARSearchViewController.m in Sources */,
 				3A7DE3171905BC8E0025AE43 /* ARReposViewController.m in Sources */,
 				3A7DE2E91905BB7E0025AE43 /* ARAppDelegate.m in Sources */,

@@ -11,13 +11,16 @@
 #import "ARRepo.h"
 #import "ARWebViewController.h"
 #import "ARNetworkController.h"
+#import "ARCell.h"
+#import "ARUser.h"
 
-@interface ARReposViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ARReposViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, weak) ARAppDelegate *appDelegate;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *userReposArray;
 @property (nonatomic, weak) ARNetworkController *networkController;
+@property (nonatomic, strong) NSOperationQueue *imageQueue;
 
 @end
 
@@ -27,8 +30,8 @@
 {
     [super viewDidLoad];
 
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
     
     _appDelegate = (ARAppDelegate *)[UIApplication sharedApplication].delegate;
     _networkController = self.appDelegate.networkController;
@@ -36,44 +39,41 @@
     [_networkController getReposForCurrentUser:^(NSMutableArray *repos) {
         _userReposArray = repos;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [_tableView reloadData];
+            [_collectionView reloadData];
         }];
     }];
 }
 
 #pragma mark - Table View
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return _userReposArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (ARCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    ARCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
-    ARRepo *repo = _userReposArray[indexPath.row];
-    cell.textLabel.text = repo.name;
-    
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [_tableView reloadData];
-    }];
+    cell.repoNameLabel.text = [_userReposArray [indexPath.row] name];
+    cell.backgroundColor = [UIColor whiteColor];
+    cell.avatarImageView.image = [UIImage imageNamed:@"default.png"];;
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"showWebView"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    if([segue.identifier isEqualToString:@"showWebView"]) {
+        NSIndexPath *indexPath = [[_collectionView indexPathsForSelectedItems] objectAtIndex:indexPath.row];
         ARRepo *repo = [_userReposArray objectAtIndex:indexPath.row];
         ARWebViewController *wvc = (ARWebViewController *)segue.destinationViewController;
-                
+        
         wvc.html_url = repo.html_url;
     }
 }

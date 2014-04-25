@@ -94,7 +94,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showWebView"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSIndexPath *indexPath = [_tableView indexPathForSelectedRow];
         ARRepo *repo = [_usersSearchArray objectAtIndex:indexPath.row];
         ARWebViewController *sdvc = (ARWebViewController *)segue.destinationViewController;
         
