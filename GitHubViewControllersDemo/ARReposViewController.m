@@ -16,7 +16,7 @@
 
 @property (nonatomic, weak) ARAppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *reposArray;
+@property (nonatomic, strong) NSMutableArray *userReposArray;
 @property (nonatomic, weak) ARNetworkController *networkController;
 
 @end
@@ -27,45 +27,33 @@
 {
     [super viewDidLoad];
 
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
     
-    self.appDelegate = (ARAppDelegate *)[UIApplication sharedApplication].delegate;
-    self.networkController = self.appDelegate.networkController;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+    _appDelegate = (ARAppDelegate *)[UIApplication sharedApplication].delegate;
+    _networkController = self.appDelegate.networkController;
     
-    [_networkController retrieveReposForCurrentUser:^(NSMutableArray *repos) {
-        self.reposArray = repos;
-        
+    [_networkController getReposForCurrentUser:^(NSMutableArray *repos) {
+        _userReposArray = repos;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [self.tableView reloadData];
+            [_tableView reloadData];
         }];
     }];
 }
 
-- (IBAction)burgerPressed:(id)sender
-{
-    [self.delegate handleBurgerPress];
-}
-
-#pragma mark - Table View delegate
+#pragma mark - Table View
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _reposArray.count;
+    return _userReposArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    ARRepo *repo = _reposArray[indexPath.row];
+    ARRepo *repo = _userReposArray[indexPath.row];
     cell.textLabel.text = repo.name;
-    cell.imageView.image = repo.userAvatar;
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         [_tableView reloadData];
@@ -83,12 +71,27 @@
 {
     if ([segue.identifier isEqualToString:@"showWebView"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        ARRepo *repo = [_reposArray objectAtIndex:indexPath.row];
+        ARRepo *repo = [_userReposArray objectAtIndex:indexPath.row];
         ARWebViewController *wvc = (ARWebViewController *)segue.destinationViewController;
                 
         wvc.html_url = repo.html_url;
     }
 }
 
+#pragma mark - Other
+
+- (IBAction)burgerPressed:(id)sender
+{
+    [self.delegate handleBurgerPress];
+}
+
 
 @end
+
+
+
+
+
+
+
+

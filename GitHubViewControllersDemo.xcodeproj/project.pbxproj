@@ -28,6 +28,7 @@
 		3A7DE324190624930025AE43 /* ARRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DE323190624930025AE43 /* ARRepo.m */; };
 		3A7DE3271906DFF30025AE43 /* ARNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7DE3261906DFF30025AE43 /* ARNetworkController.m */; };
 		3A95543619084E16007BE44B /* ARSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A95543519084E16007BE44B /* ARSignInViewController.m */; };
+		3ABA90851909A87800333505 /* ARUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ABA90841909A87800333505 /* ARUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		3A7DE3261906DFF30025AE43 /* ARNetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARNetworkController.m; sourceTree = "<group>"; };
 		3A95543419084E16007BE44B /* ARSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARSignInViewController.h; sourceTree = "<group>"; };
 		3A95543519084E16007BE44B /* ARSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARSignInViewController.m; sourceTree = "<group>"; };
+		3ABA90831909A87800333505 /* ARUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARUser.h; sourceTree = "<group>"; };
+		3ABA90841909A87800333505 /* ARUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,13 +139,13 @@
 			children = (
 				3A7DE2E71905BB7E0025AE43 /* ARAppDelegate.h */,
 				3A7DE2E81905BB7E0025AE43 /* ARAppDelegate.m */,
-				3A7DE3251906DFF30025AE43 /* ARNetworkController.h */,
-				3A7DE3261906DFF30025AE43 /* ARNetworkController.m */,
-				3A7DE2EA1905BB7E0025AE43 /* Main.storyboard */,
 				3A95543419084E16007BE44B /* ARSignInViewController.h */,
 				3A95543519084E16007BE44B /* ARSignInViewController.m */,
 				3A7DE30D1905BC8E0025AE43 /* ARRootViewController.h */,
 				3A7DE30E1905BC8E0025AE43 /* ARRootViewController.m */,
+				3A7DE3251906DFF30025AE43 /* ARNetworkController.h */,
+				3A7DE3261906DFF30025AE43 /* ARNetworkController.m */,
+				3A7DE2EA1905BB7E0025AE43 /* Main.storyboard */,
 				3A7DE30F1905BC8E0025AE43 /* ARReposViewController.h */,
 				3A7DE3101905BC8E0025AE43 /* ARReposViewController.m */,
 				3A7DE3111905BC8E0025AE43 /* ARUsersViewController.h */,
@@ -153,6 +156,8 @@
 				3A6521B71908738100C7B4FA /* ARWebViewController.m */,
 				3A7DE322190624930025AE43 /* ARRepo.h */,
 				3A7DE323190624930025AE43 /* ARRepo.m */,
+				3ABA90831909A87800333505 /* ARUser.h */,
+				3ABA90841909A87800333505 /* ARUser.m */,
 				3A7DE3151905BC8E0025AE43 /* ARBurgerProtocol.h */,
 				3A6521B919087D0E00C7B4FA /* Images.xcassets */,
 				3A7DE2DF1905BB7E0025AE43 /* Supporting Files */,
@@ -293,6 +298,7 @@
 				3A7DE3171905BC8E0025AE43 /* ARReposViewController.m in Sources */,
 				3A7DE2E91905BB7E0025AE43 /* ARAppDelegate.m in Sources */,
 				3A7DE324190624930025AE43 /* ARRepo.m in Sources */,
+				3ABA90851909A87800333505 /* ARUser.m in Sources */,
 				3A7DE3181905BC8E0025AE43 /* ARUsersViewController.m in Sources */,
 				3A7DE3161905BC8E0025AE43 /* ARRootViewController.m in Sources */,
 				3A7DE3271906DFF30025AE43 /* ARNetworkController.m in Sources */,

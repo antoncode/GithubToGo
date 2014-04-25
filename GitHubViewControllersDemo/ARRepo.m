@@ -10,26 +10,14 @@
 
 @implementation ARRepo
 
-- (id)initWithJSON:(NSDictionary *)json
+- (instancetype)initWithName:(NSDictionary *)dictionary
 {
-    if (self = [super init]) {
-        self.name = [json objectForKey:@"name"];
-        self.html_url = [json objectForKey:@"html_url"];
-        
-        NSURL *avatarURL = [NSURL URLWithString:[json[@"owner"] objectForKey:@"avatar_url"]];
-        [self downloadImageForURL:avatarURL];
-    }
+    self = [super init];
     
+    if (self) {
+        self.name = [dictionary objectForKey:@"name"];
+        self.html_url = [dictionary objectForKey:@"html_url"];
+    }
     return self;
 }
-
-- (void)downloadImageForURL:(NSURL *)url
-{
-    NSOperationQueue *downloadQueue = [NSOperationQueue new];
-    [downloadQueue addOperationWithBlock:^{
-        NSData *avatarData = [NSData dataWithContentsOfURL:url];
-        self.userAvatar = [UIImage imageWithData:avatarData];
-    }];
-}
-
 @end

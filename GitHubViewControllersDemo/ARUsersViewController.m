@@ -7,13 +7,20 @@
 //
 
 #import "ARUsersViewController.h"
+#import "ARAppDelegate.h"
 #import "ARRepo.h"
 #import "ARWebViewController.h"
+#import "ARNetworkController.h"
+#import "ARUser.h"
 
 @interface ARUsersViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+
+@property (weak, nonatomic) ARAppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *usersArray;
+@property (nonatomic, strong) NSMutableArray *usersSearchArray;
+@property (nonatomic, weak) ARNetworkController *networkController;
+@property (nonatomic, strong) NSOperationQueue *imageQueue;
 
 @end
 
@@ -23,26 +30,59 @@
 {
     [super viewDidLoad];
 
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _searchBar.delegate = self;
+
+    _appDelegate = [UIApplication sharedApplication].delegate;
+    _networkController = self.appDelegate.networkController;
     
+    _imageQueue = [NSOperationQueue new];
     
+//    [_networkController getUsersForQuery:@"bob" withCompletion:^(NSMutableArray *array) {
+//        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//            _usersSearchArray = array;
+//            [_tableView reloadData];
+//        }];
+//    }];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    
+    [_networkController getUsersForQuery:searchBar.text withCompletion:^(NSMutableArray *array) {
+        _usersSearchArray = array;
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [_tableView reloadData];
+        }];
+    }];
 }
 
 #pragma mark - Table View
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _usersArray.count;
+    return _usersSearchArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    ARRepo *repo = _usersArray[indexPath.row];
-    cell.textLabel.text = repo.name;
-    //    cell.imageView.image = repo.authorAvatar;
+    ARUser *user = _usersSearchArray[indexPath.row];
+    cell.textLabel.text = [_usersSearchArray[indexPath.row] name];
+    if (user.avatarImage)
+    {
+        cell.imageView.image = user.avatarImage;
+    } else {
+        [user downloadAvatarOnQueue:_imageQueue withCompletionBlock:^{
+            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+        }];
+    }
+    
     return cell;
 }
 
@@ -55,7 +95,7 @@
 {
     if ([segue.identifier isEqualToString:@"showWebView"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        ARRepo *repo = [_usersArray objectAtIndex:indexPath.row];
+        ARRepo *repo = [_usersSearchArray objectAtIndex:indexPath.row];
         ARWebViewController *sdvc = (ARWebViewController *)segue.destinationViewController;
         
         sdvc.html_url = repo.html_url;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="gIS-Gq-R8Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="gIS-Gq-R8Y">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -61,18 +61,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S2Z-aG-216">
-                                <rect key="frame" x="20" y="20" width="32" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="burger.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="burgerPressed:" destination="KQn-13-rPm" eventType="touchUpInside" id="kzL-H4-6z7"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0mg-UO-IHd">
-                                <rect key="frame" x="0.0" y="60" width="320" height="513"/>
+                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="7Qr-wA-7uK">
@@ -94,6 +84,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S2Z-aG-216">
+                                <rect key="frame" x="20" y="20" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="burger.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="burgerPressed:" destination="KQn-13-rPm" eventType="touchUpInside" id="kzL-H4-6z7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -250,6 +250,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTH-AL-SHl">
                                 <rect key="frame" x="20" y="20" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="bk8-NS-tRK"/>
+                                    <constraint firstAttribute="height" constant="32" id="wne-gT-xhY"/>
+                                </constraints>
                                 <state key="normal" image="burger.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -278,12 +282,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="vTH-AL-SHl" firstAttribute="leading" secondItem="ee3-af-Lyg" secondAttribute="leading" constant="20" symbolic="YES" id="IJU-ef-Tcf"/>
-                            <constraint firstItem="vTH-AL-SHl" firstAttribute="top" secondItem="ee3-af-Lyg" secondAttribute="top" constant="20" symbolic="YES" id="MLs-IO-fvo"/>
-                            <constraint firstItem="Qxh-Qu-eUs" firstAttribute="top" secondItem="vTH-AL-SHl" secondAttribute="bottom" constant="8" symbolic="YES" id="XTl-ca-Rzm"/>
-                            <constraint firstAttribute="trailing" secondItem="Qxh-Qu-eUs" secondAttribute="trailing" id="iiv-W3-nu3"/>
-                            <constraint firstItem="Qxh-Qu-eUs" firstAttribute="leading" secondItem="ee3-af-Lyg" secondAttribute="leading" id="m2i-9U-R70"/>
-                            <constraint firstAttribute="bottom" secondItem="Qxh-Qu-eUs" secondAttribute="bottom" id="mJQ-0e-zHR"/>
+                            <constraint firstItem="Qxh-Qu-eUs" firstAttribute="leading" secondItem="ee3-af-Lyg" secondAttribute="leading" id="38y-y5-DTh"/>
+                            <constraint firstItem="vTH-AL-SHl" firstAttribute="top" secondItem="ee3-af-Lyg" secondAttribute="top" constant="20" symbolic="YES" id="5n3-XC-Eck"/>
+                            <constraint firstItem="Qxh-Qu-eUs" firstAttribute="top" secondItem="vTH-AL-SHl" secondAttribute="bottom" constant="8" symbolic="YES" id="Aei-J0-RIU"/>
+                            <constraint firstAttribute="trailing" secondItem="Qxh-Qu-eUs" secondAttribute="trailing" id="KHy-D7-9Fi"/>
+                            <constraint firstItem="vTH-AL-SHl" firstAttribute="leading" secondItem="ee3-af-Lyg" secondAttribute="leading" constant="20" symbolic="YES" id="nub-FW-wCB"/>
+                            <constraint firstAttribute="bottom" secondItem="Qxh-Qu-eUs" secondAttribute="bottom" id="xHb-Dh-nk3"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -323,6 +327,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0Pl-Vv-8yA"/>
+        <segue reference="ex2-XU-asA"/>
     </inferredMetricsTieBreakers>
 </document>

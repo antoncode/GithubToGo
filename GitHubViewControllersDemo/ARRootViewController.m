@@ -53,13 +53,13 @@
     [repoNavControl setNavigationBarHidden:YES animated:NO];
 
     ARUsersViewController *usersViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"users"];
-    usersViewController.title = @"Folowing";
+    usersViewController.title = @"Search Users";
     usersViewController.delegate = self;
     UINavigationController *usersNavControl = [[UINavigationController alloc] initWithRootViewController:usersViewController];
     [usersNavControl setNavigationBarHidden:YES animated:NO];
     
     ARSearchViewController *searchViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"search"];
-    searchViewController.title = @"Search";
+    searchViewController.title = @"Search Repos";
     searchViewController.delegate = self;
     UINavigationController *searchNavControl = [[UINavigationController alloc] initWithRootViewController:searchViewController];
     [searchNavControl setNavigationBarHidden:YES animated:NO];

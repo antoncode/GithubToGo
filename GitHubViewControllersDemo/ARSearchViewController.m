@@ -11,14 +11,17 @@
 #import "ARRepo.h"
 #import "ARWebViewController.h"
 #import "ARNetworkController.h"
+#import "ARUser.h"
 
 @interface ARSearchViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) ARAppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, strong) NSMutableArray *searchArray;
+@property (nonatomic, strong) NSMutableArray *repoSearchArray;
 @property (weak, nonatomic) ARNetworkController *networkController;
+@property (nonatomic, strong) NSOperationQueue *imageQueue;
+
 
 @end
 
@@ -30,17 +33,17 @@
 
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _searchBar.delegate = self;
     
-    _searchArray = [NSMutableArray new];
+    _repoSearchArray = [NSMutableArray new];
     
-    self.appDelegate = [UIApplication sharedApplication].delegate;
-    self.networkController = self.appDelegate.networkController;
+    _appDelegate = [UIApplication sharedApplication].delegate;
+    _networkController = _appDelegate.networkController;
     
-    _networkController.query = @"iOS";
-    [_networkController getReposForQuery:^(NSMutableArray *array) {
+    [_networkController getReposForQuery:@"iOS" withCompletion:^(NSMutableArray *array) {
+        _repoSearchArray = array;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            _searchArray = array;
-            [self.tableView reloadData];
+            [_tableView reloadData];
         }];
     }];
     
@@ -49,35 +52,41 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    _networkController.query = searchBar.text;
+    [searchBar resignFirstResponder];
     
-    [_networkController getReposForQuery:^(NSMutableArray *array) {
+    [_networkController getReposForQuery:searchBar.text withCompletion:^(NSMutableArray *array) {
+        _repoSearchArray = array;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            _searchArray = array;
-            [self.tableView reloadData];
+            [_tableView reloadData];
         }];
     }];
-     
-    [searchBar resignFirstResponder];
 }
 
 #pragma mark - Table View
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _searchArray.count;
+    return _repoSearchArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    ARRepo *repo = _searchArray[indexPath.row];
+    ARRepo *repo = _repoSearchArray[indexPath.row];
     cell.textLabel.text = repo.name;
-    cell.imageView.image = repo.userAvatar;
+    
+//    if (user.avatarImage)
+//    {
+//        cell.imageView.image = user.avatarImage;
+//    } else {
+//        [user downloadAvatarOnQueue:_imageQueue withCompletionBlock:^{
+//            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+//        }];
+//    }    
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        [_tableView reloadData];
+        [tableView reloadData];
     }];
     
     return cell;
@@ -92,7 +101,7 @@
 {
     if ([segue.identifier isEqualToString:@"showWebView"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        ARRepo *repo = [_searchArray objectAtIndex:indexPath.row];
+        ARRepo *repo = [_repoSearchArray objectAtIndex:indexPath.row];
         ARWebViewController *wvc = (ARWebViewController *)segue.destinationViewController;
         
         wvc.html_url = repo.html_url;
